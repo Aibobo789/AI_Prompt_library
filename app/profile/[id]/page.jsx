@@ -2,7 +2,7 @@
 
 import Profile from "@components/Profile";
 import { useSearchParams } from "next/navigation"
-import { useState, useEffect } from "react";
+import { useState, useEffect,Suspense } from 'react';
 
 const UserProfile = ({params}) => {
 
@@ -20,7 +20,7 @@ const UserProfile = ({params}) => {
         };
 
         if(params?.id) fetchPosts();
-    },[params.id])
+    },[params?.id])
 
     return (
         <Profile 
@@ -31,4 +31,10 @@ const UserProfile = ({params}) => {
     )
 }
 
-export default UserProfile;
+export default function UserProfileBar(){
+    return (
+        <Suspense>
+            <UserProfile />
+        </Suspense>
+    )
+};

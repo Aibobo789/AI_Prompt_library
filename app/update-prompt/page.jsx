@@ -1,12 +1,11 @@
 'use client'
 
-import {useState, useEffect} from "react";
-import { useSession } from "next-auth/react";
+import {useState, useEffect, Suspense} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
 
 
-const EditPrompt = () => {
+const UpdatePrompt = () => {
     const router = useRouter();
 
     const [submitting, setSubmitting] = useState(false);
@@ -62,4 +61,10 @@ const EditPrompt = () => {
   )
 };
 
-export default EditPrompt;
+export default function EditPrompt(){
+    return (
+        <Suspense>
+            <UpdatePrompt />
+        </Suspense>
+    )
+};
